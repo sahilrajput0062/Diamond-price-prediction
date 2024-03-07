@@ -77,8 +77,10 @@ window.onclick = function(event) {
 function displayResult(result) {
     const resultDiv = document.getElementById('result');
     const resultContainer = document.getElementById('result-container');
-
+    
+    // Format the result with US$ symbol
+    const formattedResult = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result);
     // Update the content and show the result container
-    resultDiv.innerText = `Predicted Price: ${result}`;
+    resultDiv.innerText = `Predicted Price: ${formattedResult}`;
     resultContainer.style.display = 'block';
 }
