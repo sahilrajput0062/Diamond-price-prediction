@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Additional styles for the predicted price block */
+        #result-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #4caf50; /* Border color for the block */
+            border-radius: 8px;
+            text-align: center;
+            display: none; /* Initially hide the result container */
+        }
+
+        #result {
+            font-weight: bold;
+            color: #4caf50; /* Text color for the predicted price */
+            font-size: 20px; /* Adjust the font size as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diamond Price Prediction</h1>
+        <form id="predictionForm">
+            <label for="carat">Carat:</label>
+            <input type="number" id="carat" name="carat" step="0.01" required>
+
+            <label for="cut">Cut:</label>
+            <select id="cut" name="cut" required></select>
+
+            <label for="color">Color:</label>
+            <select id="color" name="color" required></select>
+
+            <label for="clarity">Clarity:</label>
+            <select id="clarity" name="clarity" required></select>
+
+            <label for="depth">Depth:</label>
+            <input type="number" id="depth" name="depth" step="0.01" required>
+
+            <label for="table">Table:</label>
+            <input type="number" id="table" name="table" step="0.01" required>
+
+            <label for="x">X:</label>
+            <input type="number" id="x" name="x" step="0.01" required>
+
+            <label for="y">Y:</label>
+            <input type="number" id="y" name="y" step="0.01" required>
+
+            <label for="z">Z:</label>
+            <input type="number" id="z" name="z" step="0.01" required>
+
+            <button type="button" onclick="predictPrice()" style="margin-bottom: 20px;">Predict Price</button>        </form>
+
+    
+
+        <div id="result-container">
+            <h2>Predicted Price</h2>
+            <div id="result" class="fancy-result" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Button to show Diamond Features -->
+        <button id="diamondFeaturesBtn" onclick="showDiamondFeatures()" style="margin-top: 20px;">Diamond Features</button>
+ 
+        <!-- Modal for Diamond Features -->
+        <div id="diamondFeaturesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeDiamondFeaturesModal()">&times;</span>
+                <h2>Diamond Features</h2>
+                <img id="diamondImage" src="Diamond.jpeg" alt="Diamond Image" style="max-width: 60%;">
+                
+                <p>
+                    Carat: Weight of the diamond (0.2--5.01)<br>
+                    Cut: Quality of the cut (Fair, Good, Very Good, Premium, Ideal)<br>
+                    Color: Diamond color, from J (worst) to D (best)<br>
+                    Clarity: Measurement of how clear the diamond is (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))<br>
+                    X: Length in mm (0--10.74)<br>
+                    Y: Width in mm (0--58.9)<br>
+                    Z: Depth in mm (0--31.8)<br>
+                    Depth: Total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43--79)<br>
+                    Table: Width of the top of the diamond relative to the widest point (43--95)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        
+        // Open the Diamond Features modal
+        function showDiamondFeatures() {
+            document.getElementById("diamondFeaturesModal").style.display = "block";
+        }
+
+        // Close the Diamond Features modal
+        function closeDiamondFeaturesModal() {
+            document.getElementById("diamondFeaturesModal").style.display = "none";
+        }
+
+        // Close the Diamond Features modal if the user clicks outside the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("diamondFeaturesModal")) {
+                closeDiamondFeaturesModal();
+            }
+        };
+    </script>
+</body>
+</html>
