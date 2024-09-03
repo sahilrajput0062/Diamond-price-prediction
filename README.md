@@ -13,4 +13,3 @@ price ($$326 - $18826): It is the price of the diamond in US dollars. It is our 
 x (0 - 10.74): Length of the diamond (in mm)
 y (0 - 58.9): Width of the diamond (in mm)
 z (0 - 31.8): Depth of the diamond (in mm)
-
